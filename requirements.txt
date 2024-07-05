@@ -3,5 +3,5 @@ gunicorn==21.2.0
 pandas==2.0.3
 scikit-learn==1.2.2
 #numpy==1.26.0
-pickle
+# pickle
 sklearn==0.0
