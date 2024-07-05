@@ -19,22 +19,18 @@
      <p style="color:rgb(170, 17, 17);font-size:small">{{ prediction_cost}}</p>
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-      <input type="text" name="sex" placeholder="Giới tính" list="sex" required="required" autocomplete="off">
-        <datalist id="sex">
+      <input type="number" name="Ky_QT_adjust" placeholder="Năm dự báo" required="required" />
+      <input type="text" name="GIOI_TINH" placeholder="Giới tính" list="GIOI_TINH" required="required" autocomplete="off">
+        <datalist id="GIOI_TINH">
           <option value="1">Nam</option>
           <option value="2">Nữ</option>
         </datalist>
-      <input type="text" name="comorbidities" placeholder="Loại bệnh kèm" list="comorbidities" required="required" >
-        <datalist id="comorbidities">
-          <option value="E78">Rối loạn lipid máu</option>
-          <option value="I10">Tăng huyết áp</option>
-          <option value="E78+I10">Rối loạn lipid máu + Tăng huyết áp</option>
-          <option value="Benh khac">Bệnh kèm khác hoặc không có bệnh kèm</option>
-        </datalist>
-      <input type="text" name="diabetes" placeholder="Loại đái tháo đường" list="diabetes" required="required">
-        <datalist id="diabetes">
-          <option value="E10">Tuýp I</option>
-          <option value="E11">Tuýp II</option>
+      <input type="number" name="Tuổi" placeholder="Độ tuổi" required="required" />
+      <input type="text" name="nhomTuoi" placeholder="Nhóm tuổi" list="nhomTuoi" required="required">
+        <datalist id="nhomTuoi">
+          <option value="18-39"></option>
+          <option value="40-59"></option>
+          <option value="≥60"></option>
         </datalist>
       <input type="text" name="regions" placeholder="Vùng - khu vực đăng ký BHYT" list="regions" required="required" >
         <datalist id="regions">
@@ -46,7 +42,7 @@
           <option value="Đồng Bằng Sông Cửu Long"></option>
           <option value="Bộ Quốc Phòng, Chính phủ"></option>
         </datalist>
-      <input type="text" name="hi" placeholder="Nhóm đối tượng tham gia BHYT" list="hi" required="required" />
+      <input type="text" name="HI" placeholder="Nhóm đối tượng tham gia BHYT" list="hi" required="required" />
         <datalist id="hi">
           <option value="Hộ gia đình đóng"></option>
           <option value="Tổ chức BHXH đóng"></option>
@@ -60,8 +56,61 @@
           <option value="95%"></option>
           <option value="100%"></option>
         </datalist>
-      <input type="text" name="typeComplication" placeholder="Loại biến chứng" list="typeComplication" required="required" />
-        <datalist id="typeComplication">
+      <input type="text" name="hang" placeholder="Hạng bệnh viện điều trị" list="hang" required="required" />
+        <datalist id="hang">
+          <option value="Đặc biệt"></option>
+          <option value="1"></option>
+          <option value="2"></option>
+          <option value="3"></option>
+          <option value="4"></option>
+          <option value="Không có hạng"></option>
+        </datalist>
+      <input type="text" name="tuyen" placeholder="Tuyến bệnh viện điều trị" list="tuyen" required="required" />
+        <datalist id="tuyen">
+          <option value="Trung ương"></option>
+          <option value="Tỉnh"></option>
+          <option value="Quận/Huyện"></option>
+          <option value="Xã/phường"></option>
+          <option value="YTCQ"></option>
+          <option value="Không phân tuyến"></option>
+        </datalist>
+      <input type="text" name="MA_LYDO_VVIEN" placeholder="Lý do vào viện" list="MA_LYDO_VVIEN" required="required" autocomplete="off">
+        <datalist id="MA_LYDO_VVIEN">
+          <option value="1">Đúng tuyến</option>
+          <option value="2">Cấp cứu</option>
+          <option value="3">Trái tuyến</option>
+          <option value="4">Thông tuyến</option>
+        </datalist>
+      <input type="text" name="MA_LOAI_KCB" placeholder="Lý do vào viện" list="MA_LOAI_KCB" required="required" autocomplete="off">
+        <datalist id="MA_LOAI_KCB">
+          <option value="1">Khám bệnh</option>
+          <option value="2">Điều trị ngoại trú</option>
+          <option value="3">Điều trị nội trú</option>
+          <option value="7">Nhận thuốc theo hẹn (không khám bệnh)</option>
+          <option value="9">Điều trị nội trú dưới 04 (bốn) giờ</option>
+        </datalist>
+      <input type="number" name="Số ngày điều trị" placeholder="Số ngày điều trị" required="required" />
+      <input type="text" name="checkComorbidities" placeholder="Có/Không bệnh kèm" list="checkComorbidities" required="required" />
+        <datalist id="checkComorbidities">
+          <option value="0">Không bệnh kèm</option>
+          <option value="1">Có bệnh kèm</option>
+        </datalist>
+      <input type="text" name="comorbidities" placeholder="Loại bệnh kèm" list="comorbidities" required="required" >
+        <datalist id="comorbidities">
+          <option value="E78">Rối loạn lipid máu</option>
+          <option value="I10">Tăng huyết áp</option>
+          <option value="E78+I10">Rối loạn lipid máu + Tăng huyết áp</option>
+          <option value="Benh khac">Bệnh kèm khác hoặc không có bệnh kèm</option>
+        </datalist>
+      <input type="text" name="soBienChung_cat" placeholder="Số biến chứng" list="soBienChung_cat" required="required" />
+        <datalist id="soBienChung_cat">
+          <option value="0">Không có biến chứng</option>
+          <option value="1">Có 01 biến chứng</option>
+          <option value="2">Có 02 biến chứng</option>
+          <option value="3">Có từ 03 biến chứng trở lên</option>
+        </datalist>
+      <input type="text" name="loaiBienChung" placeholder="Loại biến chứng" list="loaiBienChung" required="required" />
+        <datalist id="loaiBienChung">
           <option value="MML">Mạch máu lớn</option>
           <option value="MMN">Mạch máu nhỏ</option>
           <option value="BCCH">Biến chứng chuyển hoá</option>
@@ -71,16 +120,15 @@
           <option value="MML+MMN+BCCH">Mạch máu lớn + Mạch máu nhỏ + Biến chứng chuyển hoá</option>
           <option value="Khong">Không có biến chứng</option>
         </datalist>
-      <input type="number" name="year" placeholder="Năm dự báo" required="required" />
-      <input type="number" name="age" placeholder="Độ tuổi" required="required" />
-      <input type="number" name="complication" placeholder="Số lượng biến chứng" required="required" />
-      <input type="number" name="gradeComplication" placeholder="Điểm biến chứng" required="required" />
-      <input type="number" name="so_ngay_noitru" placeholder="Số ngày nội trú" required="required" />
-      <input type="number" name="so_ngay_ngoaitru" placeholder="Số ngày ngoại trú" required="required" />
-      <input type="number" name="so_dot_noitru" placeholder="Số đợt nội trú" required="required" />
-      <input type="number" name="so_dot_ngoaitru" placeholder="Số đợt ngoại trú" required="required" />
-      <input type="number" name="so_dot_khambenh" placeholder="Số đợt khám bệnh" required="required" />
+      <input type="text" name="diemBienChung_cat" placeholder="Số biến chứng" list="diemBienChung_cat" required="required" />
+        <datalist id="diemBienChung_cat">
+          <option value="0">0 điểm</option>
+          <option value="1">01 điểm</option>
+          <option value="2">02 điểm</option>
+          <option value="3">Từ 03 điểm trở lên</option>
+        </datalist>
 
+        
       <button type="submit" class="btn">Dự báo</button>
     
     </form>
