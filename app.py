@@ -38,6 +38,6 @@ def predict():
 
     output = int(np.exp(prediction[0]))
 
-    return render_template('index.html', prediction_cost='Chi phí điều trị một năm của bệnh nhân: {:,} VND'.format(output).replace(',','.'))
+    return render_template('index.html', prediction_cost='Chi phí điều trị một đợt của bệnh nhân: {:,} VND'.format(output).replace(',','.'))
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=1003)
