@@ -30,9 +30,12 @@ def predict():
     # catcol = ohe.transform(pd.DataFrame(int_features[:7]).T).A
     # numcol = ss.transform(pd.DataFrame(int_features[7:]).T)
     # x_train = np.concatenate([catcol, numcol], axis=1)
-    cols = ['Ky_QT_adjust','GIOI_TINH','Tuổi','nhomTuoi','regions','HI','insurance','hang','tuyen','MA_LYDO_VVIEN','MA_LOAI_KCB','Số ngày điều trị','checkComorbidities',
-            'comorbidities','soBienChung_cat','loaiBienChung','diemBienChung_cat']
+    cols = ['Ky_QT_adjust','hang','GIOI_TINH','nhomTuoi','Tuổi','HI','insurance','regions','checkComorbidities','comorbidities','soBienChung_cat',
+              'loaiBienChung','diemBienChung_cat','tuyen','MA_LYDO_VVIEN','MA_LOAI_KCB','Số ngày điều trị']
     x = pd.DataFrame([ls], columns=cols)
+    cols_1 = ['Ky_QT_adjust','GIOI_TINH','Tuổi','nhomTuoi','regions','HI','insurance','hang','tuyen','MA_LYDO_VVIEN','MA_LOAI_KCB','Số ngày điều trị','checkComorbidities',
+            'comorbidities','soBienChung_cat','loaiBienChung','diemBienChung_cat']
+    x = x[cols_1]
     # return ls
     prediction = pipeline.predict(x)
 
